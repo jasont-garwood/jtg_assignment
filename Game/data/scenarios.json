@@ -1,0 +1,302 @@
+
+events = {
+    "predator_encounter": {
+        "name": "Predator Encounter",
+        "description": "A hungry predator spots you in the distance. What do you do?",
+        "choices": {
+            "run": {
+                "description": "Run as fast as you can.",
+                "health": 0,
+                "energy": -20,
+                "score": 10
+            },
+            "hide": {
+                "description": "Find somewhere to hide.",
+                "health": 0,
+                "energy": -5,
+                "score": 15
+            },
+            "fight": {
+                "description": "Stand your ground and fight.",
+                "health": -25,
+                "energy": -20,
+                "score": 20
+            }
+        }
+    },
+
+    "food_shortage": {
+        "name": "Food Shortage",
+        "description": "Food is becoming scarce. You need to find a way to survive.",
+        "choices": {
+            "hunt": {
+                "description": "Search far and wide for food.",
+                "health": 5,
+                "energy": -15,
+                "score": 20
+            },
+            "scavenge": {
+                "description": "Look for leftover food nearby.",
+                "health": 0,
+                "energy": -5,
+                "score": 10
+            },
+            "rest": {
+                "description": "Save energy and wait for another opportunity.",
+                "health": -5,
+                "energy": 15,
+                "score": 5
+            }
+        }
+    },
+
+    "sudden_storm": {
+        "name": "Sudden Storm",
+        "description": "Dark clouds roll in, and heavy rain begins to fall.",
+        "choices": {
+            "shelter": {
+                "description": "Find shelter beneath rocks or trees.",
+                "health": 0,
+                "energy": -5,
+                "score": 15
+            },
+            "keep_moving": {
+                "description": "Push through the storm.",
+                "health": -10,
+                "energy": -15,
+                "score": 10
+            },
+            "find_water": {
+                "description": "Use the storm to collect drinking water.",
+                "health": 5,
+                "energy": -5,
+                "score": 15
+            }
+        }
+    },
+
+    "river_crossing": {
+        "name": "River Crossing",
+        "description": "A fast-flowing river blocks your path to food and shelter.",
+        "choices": {
+            "swim": {
+                "description": "Swim directly across.",
+                "health": -10,
+                "energy": -20,
+                "score": 20
+            },
+            "find_bridge": {
+                "description": "Search for a safe place to cross.",
+                "health": 0,
+                "energy": -10,
+                "score": 15
+            },
+            "follow_river": {
+                "description": "Follow the river to find another route.",
+                "health": 0,
+                "energy": -15,
+                "score": 10
+            }
+        }
+    },
+
+    "nightfall": {
+        "name": "Nightfall",
+        "description": "The sun sets. The forest becomes dark and unfamiliar.",
+        "choices": {
+            "explore": {
+                "description": "Continue exploring in the darkness.",
+                "health": -5,
+                "energy": -10,
+                "score": 15
+            },
+            "sleep": {
+                "description": "Find a safe place to rest.",
+                "health": 5,
+                "energy": 20,
+                "score": 5
+            },
+            "stay_alert": {
+                "description": "Stay awake and watch for danger.",
+                "health": 0,
+                "energy": -5,
+                "score": 10
+            }
+        }
+    },
+
+    "injury": {
+        "name": "Unexpected Injury",
+        "description": "You hurt yourself while moving through rough terrain.",
+        "choices": {
+            "rest": {
+                "description": "Rest until you feel stronger.",
+                "health": 15,
+                "energy": 10,
+                "score": 10
+            },
+            "keep_going": {
+                "description": "Ignore the pain and keep moving.",
+                "health": -10,
+                "energy": -10,
+                "score": 15
+            },
+            "find_food": {
+                "description": "Search nearby for food to regain strength.",
+                "health": 5,
+                "energy": -10,
+                "score": 15
+            }
+        }
+    },
+
+    "rival_territory": {
+        "name": "Rival Territory",
+        "description": "You enter another animal's territory. It is watching you closely.",
+        "choices": {
+            "retreat": {
+                "description": "Back away and find another route.",
+                "health": 0,
+                "energy": -10,
+                "score": 10
+            },
+            "defend": {
+                "description": "Try to defend your position.",
+                "health": -15,
+                "energy": -15,
+                "score": 20
+            },
+            "sneak_past": {
+                "description": "Move quietly around the rival.",
+                "health": 0,
+                "energy": -10,
+                "score": 20
+            }
+        }
+    },
+
+    "unexpected_discovery": {
+        "name": "Unexpected Discovery",
+        "description": "You discover a hidden clearing full of interesting things.",
+        "choices": {
+            "investigate": {
+                "description": "Explore the clearing carefully.",
+                "health": 5,
+                "energy": -5,
+                "score": 20
+            },
+            "collect_food": {
+                "description": "Gather the food you can find.",
+                "health": 15,
+                "energy": -5,
+                "score": 15
+            },
+            "move_on": {
+                "description": "Keep moving to avoid potential danger.",
+                "health": 0,
+                "energy": 5,
+                "score": 5
+            }
+        }
+    },
+
+    "heatwave": {
+        "name": "Heatwave",
+        "description": "The temperature rises, and the landscape becomes dangerously hot.",
+        "choices": {
+            "find_shade": {
+                "description": "Rest in a cool, shaded spot.",
+                "health": 0,
+                "energy": 10,
+                "score": 10
+            },
+            "search_water": {
+                "description": "Travel to find a source of water.",
+                "health": -5,
+                "energy": -15,
+                "score": 20
+            },
+            "keep_moving": {
+                "description": "Continue your journey despite the heat.",
+                "health": -15,
+                "energy": -15,
+                "score": 15
+            }
+        }
+    },
+
+    "lost": {
+        "name": "Lost in the Wild",
+        "description": "You realize you no longer recognize your surroundings.",
+        "choices": {
+            "track_scent": {
+                "description": "Use your senses to retrace your route.",
+                "health": 0,
+                "energy": -5,
+                "score": 20
+            },
+            "climb_high": {
+                "description": "Find a high point to look around.",
+                "health": -5,
+                "energy": -10,
+                "score": 15
+            },
+            "wander": {
+                "description": "Pick a direction and hope for the best.",
+                "health": -10,
+                "energy": -15,
+                "score": 5
+            }
+        }
+    },
+
+    "strange_noise": {
+        "name": "Strange Noise",
+        "description": "A strange sound comes from the bushes nearby.",
+        "choices": {
+            "investigate": {
+                "description": "Carefully investigate the sound.",
+                "health": -5,
+                "energy": -10,
+                "score": 20
+            },
+            "hide": {
+                "description": "Stay hidden until things become quiet.",
+                "health": 0,
+                "energy": -5,
+                "score": 10
+            },
+            "escape": {
+                "description": "Leave the area immediately.",
+                "health": 0,
+                "energy": -15,
+                "score": 10
+            }
+        }
+    },
+
+    "new_friend": {
+        "name": "An Unexpected Friend",
+        "description": "You encounter another animal that seems friendly but needs help.",
+        "choices": {
+            "help": {
+                "description": "Help the animal find food or shelter.",
+                "health": 0,
+                "energy": -10,
+                "score": 25
+            },
+            "team_up": {
+                "description": "Join forces and explore together.",
+                "health": 5,
+                "energy": -5,
+                "score": 20
+            },
+            "move_on": {
+                "description": "Continue your journey alone.",
+                "health": 0,
+                "energy": 5,
+                "score": 5
+            }
+        }
+    }
+}
