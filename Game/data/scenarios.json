@@ -1,302 +1,1502 @@
-
-events = {
-    "predator_encounter": {
-        "name": "Predator Encounter",
-        "description": "A hungry predator spots you in the distance. What do you do?",
-        "choices": {
-            "run": {
-                "description": "Run as fast as you can.",
-                "health": 0,
-                "energy": -20,
-                "score": 10
-            },
-            "hide": {
-                "description": "Find somewhere to hide.",
-                "health": 0,
-                "energy": -5,
-                "score": 15
-            },
-            "fight": {
-                "description": "Stand your ground and fight.",
-                "health": -25,
-                "energy": -20,
-                "score": 20
-            }
-        }
-    },
-
-    "food_shortage": {
-        "name": "Food Shortage",
-        "description": "Food is becoming scarce. You need to find a way to survive.",
-        "choices": {
-            "hunt": {
-                "description": "Search far and wide for food.",
-                "health": 5,
-                "energy": -15,
-                "score": 20
-            },
-            "scavenge": {
-                "description": "Look for leftover food nearby.",
-                "health": 0,
-                "energy": -5,
-                "score": 10
-            },
-            "rest": {
-                "description": "Save energy and wait for another opportunity.",
-                "health": -5,
-                "energy": 15,
-                "score": 5
-            }
-        }
-    },
-
-    "sudden_storm": {
-        "name": "Sudden Storm",
-        "description": "Dark clouds roll in, and heavy rain begins to fall.",
-        "choices": {
-            "shelter": {
-                "description": "Find shelter beneath rocks or trees.",
-                "health": 0,
-                "energy": -5,
-                "score": 15
-            },
-            "keep_moving": {
-                "description": "Push through the storm.",
-                "health": -10,
-                "energy": -15,
-                "score": 10
-            },
-            "find_water": {
-                "description": "Use the storm to collect drinking water.",
-                "health": 5,
-                "energy": -5,
-                "score": 15
-            }
-        }
-    },
-
-    "river_crossing": {
-        "name": "River Crossing",
-        "description": "A fast-flowing river blocks your path to food and shelter.",
-        "choices": {
-            "swim": {
-                "description": "Swim directly across.",
-                "health": -10,
-                "energy": -20,
-                "score": 20
-            },
-            "find_bridge": {
-                "description": "Search for a safe place to cross.",
-                "health": 0,
-                "energy": -10,
-                "score": 15
-            },
-            "follow_river": {
-                "description": "Follow the river to find another route.",
-                "health": 0,
-                "energy": -15,
-                "score": 10
-            }
-        }
-    },
-
-    "nightfall": {
-        "name": "Nightfall",
-        "description": "The sun sets. The forest becomes dark and unfamiliar.",
-        "choices": {
-            "explore": {
-                "description": "Continue exploring in the darkness.",
-                "health": -5,
-                "energy": -10,
-                "score": 15
-            },
-            "sleep": {
-                "description": "Find a safe place to rest.",
-                "health": 5,
-                "energy": 20,
-                "score": 5
-            },
-            "stay_alert": {
-                "description": "Stay awake and watch for danger.",
-                "health": 0,
-                "energy": -5,
-                "score": 10
-            }
-        }
-    },
-
-    "injury": {
-        "name": "Unexpected Injury",
-        "description": "You hurt yourself while moving through rough terrain.",
-        "choices": {
-            "rest": {
-                "description": "Rest until you feel stronger.",
-                "health": 15,
-                "energy": 10,
-                "score": 10
-            },
-            "keep_going": {
-                "description": "Ignore the pain and keep moving.",
-                "health": -10,
-                "energy": -10,
-                "score": 15
-            },
-            "find_food": {
-                "description": "Search nearby for food to regain strength.",
-                "health": 5,
-                "energy": -10,
-                "score": 15
-            }
-        }
-    },
-
-    "rival_territory": {
-        "name": "Rival Territory",
-        "description": "You enter another animal's territory. It is watching you closely.",
-        "choices": {
-            "retreat": {
-                "description": "Back away and find another route.",
-                "health": 0,
-                "energy": -10,
-                "score": 10
-            },
-            "defend": {
-                "description": "Try to defend your position.",
-                "health": -15,
-                "energy": -15,
-                "score": 20
-            },
-            "sneak_past": {
-                "description": "Move quietly around the rival.",
-                "health": 0,
-                "energy": -10,
-                "score": 20
-            }
-        }
-    },
-
-    "unexpected_discovery": {
-        "name": "Unexpected Discovery",
-        "description": "You discover a hidden clearing full of interesting things.",
-        "choices": {
-            "investigate": {
-                "description": "Explore the clearing carefully.",
-                "health": 5,
-                "energy": -5,
-                "score": 20
-            },
-            "collect_food": {
-                "description": "Gather the food you can find.",
-                "health": 15,
-                "energy": -5,
-                "score": 15
-            },
-            "move_on": {
-                "description": "Keep moving to avoid potential danger.",
-                "health": 0,
-                "energy": 5,
-                "score": 5
-            }
-        }
-    },
-
-    "heatwave": {
-        "name": "Heatwave",
-        "description": "The temperature rises, and the landscape becomes dangerously hot.",
-        "choices": {
-            "find_shade": {
-                "description": "Rest in a cool, shaded spot.",
-                "health": 0,
-                "energy": 10,
-                "score": 10
-            },
-            "search_water": {
-                "description": "Travel to find a source of water.",
-                "health": -5,
-                "energy": -15,
-                "score": 20
-            },
-            "keep_moving": {
-                "description": "Continue your journey despite the heat.",
-                "health": -15,
-                "energy": -15,
-                "score": 15
-            }
-        }
-    },
-
-    "lost": {
-        "name": "Lost in the Wild",
-        "description": "You realize you no longer recognize your surroundings.",
-        "choices": {
-            "track_scent": {
-                "description": "Use your senses to retrace your route.",
-                "health": 0,
-                "energy": -5,
-                "score": 20
-            },
-            "climb_high": {
-                "description": "Find a high point to look around.",
-                "health": -5,
-                "energy": -10,
-                "score": 15
-            },
-            "wander": {
-                "description": "Pick a direction and hope for the best.",
-                "health": -10,
-                "energy": -15,
-                "score": 5
-            }
-        }
-    },
-
-    "strange_noise": {
-        "name": "Strange Noise",
-        "description": "A strange sound comes from the bushes nearby.",
-        "choices": {
-            "investigate": {
-                "description": "Carefully investigate the sound.",
-                "health": -5,
-                "energy": -10,
-                "score": 20
-            },
-            "hide": {
-                "description": "Stay hidden until things become quiet.",
-                "health": 0,
-                "energy": -5,
-                "score": 10
-            },
-            "escape": {
-                "description": "Leave the area immediately.",
-                "health": 0,
-                "energy": -15,
-                "score": 10
-            }
-        }
-    },
-
-    "new_friend": {
-        "name": "An Unexpected Friend",
-        "description": "You encounter another animal that seems friendly but needs help.",
-        "choices": {
-            "help": {
-                "description": "Help the animal find food or shelter.",
-                "health": 0,
-                "energy": -10,
-                "score": 25
-            },
-            "team_up": {
-                "description": "Join forces and explore together.",
-                "health": 5,
-                "energy": -5,
-                "score": 20
-            },
-            "move_on": {
-                "description": "Continue your journey alone.",
-                "health": 0,
-                "energy": 5,
-                "score": 5
-            }
-        }
+{
+  "predator_encounter": {
+    "name": "Predator Encounter",
+    "description": "Danger approaches! A large predator is sizing you up from the shadows.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Eurasian_wolf_2.jpg/500px-Eurasian_wolf_2.jpg",
+    "choices": {
+      "run": {
+        "description": "Flee at top speed, using whatever movement you are best at.",
+        "health": 0,
+        "energy": -20,
+        "score": 10
+      },
+      "hide": {
+        "description": "Attempt to blend into the surrounding vegetation, terrain, or shadows.",
+        "health": 0,
+        "energy": -5,
+        "score": 15
+      },
+      "fight": {
+        "description": "Confront the danger aggressively to stand your ground.",
+        "health": -25,
+        "energy": -20,
+        "score": 20
+      }
     }
+  },
+  "food_shortage": {
+    "name": "Food Shortage",
+    "description": "Resources are dwindling in this territory. Finding nutrients is paramount.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/EasternGraySquirrel_GAm.jpg/500px-EasternGraySquirrel_GAm.jpg",
+    "choices": {
+      "hunt": {
+        "description": "Exert extensive energy to actively forage, hunt, or track down nourishment.",
+        "health": 5,
+        "energy": -15,
+        "score": 20
+      },
+      "scavenge": {
+        "description": "Look for leftover edible organic material nearby.",
+        "health": 0,
+        "energy": -5,
+        "score": 10
+      },
+      "rest": {
+        "description": "Lower your activity level to survive on your current reserves.",
+        "health": -5,
+        "energy": 15,
+        "score": 5
+      }
+    }
+  },
+  "sudden_storm": {
+    "name": "Sudden Storm",
+    "description": "Violent winds rise and torrential weather changes your visibility.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Lightning_Pritzerbe_01_%28MK%29.jpg/500px-Lightning_Pritzerbe_01_%28MK%29.jpg",
+    "choices": {
+      "shelter": {
+        "description": "Seek protection under heavy terrain elements, local canopy, or any solid cover.",
+        "health": 0,
+        "energy": -5,
+        "score": 15
+      },
+      "keep_moving": {
+        "description": "Brave the elements and travel onward regardless.",
+        "health": -10,
+        "energy": -15,
+        "score": 10
+      },
+      "find_water": {
+        "description": "Take advantage of the downpour to collect and store moisture.",
+        "health": 5,
+        "energy": -5,
+        "score": 15
+      }
+    }
+  },
+  "river_crossing": {
+    "name": "River Crossing",
+    "description": "A body of moving water blocks your path forward.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Pirogue_running_on_the_Mekong_at_golden_hour_between_Don_Det_and_Don_Khon_Laos.jpg/500px-Pirogue_running_on_the_Mekong_at_golden_hour_between_Don_Det_and_Don_Khon_Laos.jpg",
+    "choices": {
+      "swim": {
+        "description": "Cross directly, testing your physical endurance in the current.",
+        "health": -10,
+        "energy": -20,
+        "score": 20
+      },
+      "find_bridge": {
+        "description": "Look for alternative routes, like fallen trees, stepping stones, or shallow areas.",
+        "health": 0,
+        "energy": -10,
+        "score": 15
+      },
+      "follow_river": {
+        "description": "Travel alongside the bank to scout for a safer crossing.",
+        "health": 0,
+        "energy": -15,
+        "score": 10
+      }
+    }
+  },
+  "nightfall": {
+    "name": "Nightfall",
+    "description": "Ambient light fades away, and the nocturnal cycle begins.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/%D0%A1%D0%B2%D0%B5%D1%82_%D0%BE%D1%82_%D0%B4%D0%B5%D1%80%D0%B5%D0%B2%D0%BD%D0%B8_-_panoramio.jpg/500px-%D0%A1%D0%B2%D0%B5%D1%82_%D0%BE%D1%82_%D0%B4%D0%B5%D1%80%D0%B5%D0%B2%D0%BD%D0%B8_-_panoramio.jpg",
+    "choices": {
+      "explore": {
+        "description": "Rely on your strongest senses to keep moving in the darkness.",
+        "health": -5,
+        "energy": -10,
+        "score": 15
+      },
+      "sleep": {
+        "description": "Find a safe, secluded spot to restore your stamina until dawn.",
+        "health": 5,
+        "energy": 20,
+        "score": 5
+      },
+      "stay_alert": {
+        "description": "Stay awake and actively monitor for unseen dangers.",
+        "health": 0,
+        "energy": -5,
+        "score": 10
+      }
+    }
+  },
+  "strange_glow": {
+    "name": "Mysterious Environment",
+    "description": "You enter an area alive with unusual natural phenomena - strange lights, colors, or sounds unlike anywhere you have been.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Photinus_pyralis_Firefly_glowing.jpg/500px-Photinus_pyralis_Firefly_glowing.jpg",
+    "choices": {
+      "communicate": {
+        "description": "Interact cautiously with the unfamiliar elements around you, in whatever way your species communicates.",
+        "health": 0,
+        "energy": -5,
+        "score": 25
+      },
+      "harvest": {
+        "description": "Forage carefully for unusual nutrients or materials the area might offer.",
+        "health": 10,
+        "energy": -5,
+        "score": 15
+      },
+      "hide_glow": {
+        "description": "Conceal yourself so you are not exposed against the strange backdrop.",
+        "health": 0,
+        "energy": -10,
+        "score": 20
+      }
+    }
+  },
+  "habitat_loss": {
+    "name": "Habitat Loss",
+    "description": "Strange creatures are clearing away parts of your home territory, and the landscape is changing fast.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Opera%C3%A7%C3%A3o_Hymenaea%2C_Julho-2016_%2829399454651%29.jpg/500px-Opera%C3%A7%C3%A3o_Hymenaea%2C_Julho-2016_%2829399454651%29.jpg",
+    "choices": {
+      "investigate": {
+        "description": "Move closer to observe what is happening and how it might affect you.",
+        "health": -5,
+        "energy": -10,
+        "score": 15
+      },
+      "relocate": {
+        "description": "Abandon the area and search for untouched territory.",
+        "health": -5,
+        "energy": -20,
+        "score": 20
+      },
+      "adapt": {
+        "description": "Stay put and adjust your routines around the new conditions.",
+        "health": -10,
+        "energy": -5,
+        "score": 10
+      }
+    }
+  },
+  "severe_drought": {
+    "name": "Severe Drought",
+    "description": "The rains have not come for weeks. Water holes are shrinking and the land is cracked and dry.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Lac_de_l%27Entonnoir_-_img_49473.jpg/500px-Lac_de_l%27Entonnoir_-_img_49473.jpg",
+    "choices": {
+      "seek_water": {
+        "description": "Travel far in search of a reliable water source.",
+        "health": -10,
+        "energy": -20,
+        "score": 20
+      },
+      "dig": {
+        "description": "Try to reach moisture hidden beneath the dry surface.",
+        "health": -5,
+        "energy": -15,
+        "score": 15
+      },
+      "conserve": {
+        "description": "Rest in the shade and conserve every drop of energy and moisture.",
+        "health": -5,
+        "energy": 10,
+        "score": 10
+      }
+    }
+  },
+  "wildfire_threat": {
+    "name": "Wildfire Threat",
+    "description": "Smoke drifts on the wind and an orange glow builds on the horizon - fire is spreading toward your territory.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Burnout_ops_on_Mangum_Fire_McCall_Smokejumpers.jpg/500px-Burnout_ops_on_Mangum_Fire_McCall_Smokejumpers.jpg",
+    "choices": {
+      "flee": {
+        "description": "Run ahead of the flames toward safer ground.",
+        "health": -5,
+        "energy": -25,
+        "score": 20
+      },
+      "shelter_underground": {
+        "description": "Burrow deep or find solid shelter that fire cannot easily reach.",
+        "health": -10,
+        "energy": -10,
+        "score": 15
+      },
+      "wait_and_watch": {
+        "description": "Monitor the wind and flames closely, ready to move at the last moment.",
+        "health": -15,
+        "energy": -5,
+        "score": 10
+      }
+    }
+  },
+  "flash_flood": {
+    "name": "Flash Flood",
+    "description": "A wall of rushing water surges through your path, turning familiar ground into a churning torrent.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Main_and_University%2C_Charlottesville%2C_during_flash_flood_%28comparison%29.jpg/500px-Main_and_University%2C_Charlottesville%2C_during_flash_flood_%28comparison%29.jpg",
+    "choices": {
+      "climb": {
+        "description": "Scramble to higher ground before the water reaches you.",
+        "health": -5,
+        "energy": -15,
+        "score": 20
+      },
+      "ride_it_out": {
+        "description": "Find a sturdy anchor and hold on until the surge passes.",
+        "health": -15,
+        "energy": -10,
+        "score": 10
+      },
+      "swim_out": {
+        "description": "Use the current itself to carry you to calmer water.",
+        "health": -10,
+        "energy": -20,
+        "score": 15
+      }
+    }
+  },
+  "winter_blizzard": {
+    "name": "Winter Blizzard",
+    "description": "Snow lashes down in blinding sheets and the temperature plummets. The world has turned white and hostile.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Blizzard3_-_NOAA.jpg/500px-Blizzard3_-_NOAA.jpg",
+    "choices": {
+      "dig_in": {
+        "description": "Create a snow shelter or find a hollow to wait out the storm.",
+        "health": 0,
+        "energy": -10,
+        "score": 15
+      },
+      "push_on": {
+        "description": "Keep moving through the whiteout toward your goal.",
+        "health": -15,
+        "energy": -20,
+        "score": 20
+      },
+      "huddle": {
+        "description": "Curl up tight and let your body's warmth carry you through.",
+        "health": -10,
+        "energy": 5,
+        "score": 10
+      }
+    }
+  },
+  "extreme_heat": {
+    "name": "Extreme Heat",
+    "description": "The sun beats down mercilessly and the air shimmers. Heat presses on you from every direction.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Heat_Wave.jpg/500px-Heat_Wave.jpg",
+    "choices": {
+      "find_shade": {
+        "description": "Seek out the coolest shadow you can find and wait for dusk.",
+        "health": 0,
+        "energy": -5,
+        "score": 15
+      },
+      "travel_night": {
+        "description": "Rest now and do your moving during the cool of night.",
+        "health": -5,
+        "energy": 5,
+        "score": 20
+      },
+      "keep_going": {
+        "description": "Press on through the heat despite the risk.",
+        "health": -20,
+        "energy": -15,
+        "score": 10
+      }
+    }
+  },
+  "dense_fog": {
+    "name": "Dense Fog",
+    "description": "A thick fog rolls in, swallowing landmarks and muffling every sound.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/A_foggy_winter_morning.jpg/500px-A_foggy_winter_morning.jpg",
+    "choices": {
+      "slow_down": {
+        "description": "Move carefully, navigating by touch and close observation.",
+        "health": 0,
+        "energy": -10,
+        "score": 15
+      },
+      "wait": {
+        "description": "Stay still until the fog lifts and the view clears.",
+        "health": 0,
+        "energy": 5,
+        "score": 10
+      },
+      "use_senses": {
+        "description": "Trust your strongest sense - smell, sound, or sight - to guide you through.",
+        "health": -5,
+        "energy": -10,
+        "score": 20
+      }
+    }
+  },
+  "lost_family": {
+    "name": "Lost from the Group",
+    "description": "You look around and realize you have wandered apart from your family or group, and nothing looks familiar.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Blumenwiese_bei_Obermaiselstein05.jpg/500px-Blumenwiese_bei_Obermaiselstein05.jpg",
+    "choices": {
+      "call_out": {
+        "description": "Signal loudly in whatever way your kind communicates.",
+        "health": 0,
+        "energy": -5,
+        "score": 15
+      },
+      "retrace": {
+        "description": "Carefully follow your own trail back toward where you split up.",
+        "health": 0,
+        "energy": -15,
+        "score": 20
+      },
+      "wait": {
+        "description": "Stay where you are - they may come looking for you.",
+        "health": -5,
+        "energy": 5,
+        "score": 10
+      }
+    }
+  },
+  "territorial_rival": {
+    "name": "Territorial Rival",
+    "description": "Another animal of your kind has appeared on the edge of your territory, testing your resolve.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Cervus_elaphus_Luc_Viatour_6.jpg/500px-Cervus_elaphus_Luc_Viatour_6.jpg",
+    "choices": {
+      "display": {
+        "description": "Put on your most impressive display to warn the rival away.",
+        "health": 0,
+        "energy": -10,
+        "score": 15
+      },
+      "confront": {
+        "description": "Meet the challenger directly and settle the dispute.",
+        "health": -20,
+        "energy": -20,
+        "score": 20
+      },
+      "withdraw": {
+        "description": "Give ground quietly and avoid a costly fight.",
+        "health": -5,
+        "energy": -5,
+        "score": 10
+      }
+    }
+  },
+  "food_thief": {
+    "name": "Food Thief",
+    "description": "You catch another animal raiding your carefully stored food supply.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Raccoon_in_Central_Park_%2835264%29.jpg/500px-Raccoon_in_Central_Park_%2835264%29.jpg",
+    "choices": {
+      "defend": {
+        "description": "Drive the thief away from your cache.",
+        "health": -10,
+        "energy": -15,
+        "score": 20
+      },
+      "share": {
+        "description": "Tolerate the loss and let the thief take a portion.",
+        "health": -5,
+        "energy": 0,
+        "score": 10
+      },
+      "rehide": {
+        "description": "Quietly plan to move your remaining stores somewhere safer.",
+        "health": 0,
+        "energy": -10,
+        "score": 15
+      }
+    }
+  },
+  "injured_limb": {
+    "name": "Injured Limb",
+    "description": "A misstep on rough ground leaves you with a painful injury that slows your every move.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/-2020-09-23_Blackberrys%2C_Coast_Path%2C_Trimingham.JPG/500px--2020-09-23_Blackberrys%2C_Coast_Path%2C_Trimingham.JPG",
+    "choices": {
+      "rest": {
+        "description": "Stop and give the injury time to heal before moving on.",
+        "health": 10,
+        "energy": 5,
+        "score": 15
+      },
+      "push_through": {
+        "description": "Keep moving despite the pain and favor your good side.",
+        "health": -15,
+        "energy": -10,
+        "score": 10
+      },
+      "find_help": {
+        "description": "Seek out a safer spot or allies who can ease your situation.",
+        "health": 0,
+        "energy": -10,
+        "score": 20
+      }
+    }
+  },
+  "human_trap": {
+    "name": "Human Trap",
+    "description": "A strange human device - a snare or cage - lies hidden along a trail you often use.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Paul_Childerley_driven_hunt_Finland_04.png/500px-Paul_Childerley_driven_hunt_Finland_04.png",
+    "choices": {
+      "avoid": {
+        "description": "Mark the spot and steer your whole group away from the danger.",
+        "health": 0,
+        "energy": -5,
+        "score": 15
+      },
+      "disable": {
+        "description": "Carefully trigger or damage the device so it can hurt no one.",
+        "health": -10,
+        "energy": -15,
+        "score": 25
+      },
+      "warn_others": {
+        "description": "Risk lingering to watch and warn others away from the area.",
+        "health": -5,
+        "energy": -10,
+        "score": 10
+      }
+    }
+  },
+  "road_crossing": {
+    "name": "Road Crossing",
+    "description": "A broad ribbon of human pavement stretches before you, with speeding metal beasts rushing past.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Erlangen_Bundesautobahn_73_Auffahrt_Luftbild-20230422-RM-165734.jpg/500px-Erlangen_Bundesautobahn_73_Auffahrt_Luftbild-20230422-RM-165734.jpg",
+    "choices": {
+      "dash": {
+        "description": "Time a gap in the traffic and sprint across.",
+        "health": -10,
+        "energy": -15,
+        "score": 20
+      },
+      "find_tunnel": {
+        "description": "Search for a culvert, bridge, or gap that lets you cross underneath.",
+        "health": 0,
+        "energy": -10,
+        "score": 15
+      },
+      "travel_dusk": {
+        "description": "Wait until traffic quiets down at dusk to cross.",
+        "health": 0,
+        "energy": -5,
+        "score": 10
+      }
+    }
+  },
+  "hikers_encounter": {
+    "name": "Hiker Encounter",
+    "description": "A group of humans on foot wanders through your territory, making noise and leaving scent everywhere.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Hiking_to_the_Ice_Lakes._San_Juan_National_Forest%2C_Colorado.jpg/500px-Hiking_to_the_Ice_Lakes._San_Juan_National_Forest%2C_Colorado.jpg",
+    "choices": {
+      "observe": {
+        "description": "Watch from cover to understand what they want.",
+        "health": 0,
+        "energy": -5,
+        "score": 15
+      },
+      "retreat": {
+        "description": "Slip away silently and keep your distance.",
+        "health": 0,
+        "energy": -10,
+        "score": 10
+      },
+      "approach": {
+        "description": "Boldly move closer - their packs may hold dropped crumbs.",
+        "health": -10,
+        "energy": -5,
+        "score": 20
+      }
+    }
+  },
+  "polluted_water": {
+    "name": "Polluted Water",
+    "description": "A strange chemical sheen and bitter smell coat the water source you depend on.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Garbage_floating_around_in_Circular_Quay.jpg/500px-Garbage_floating_around_in_Circular_Quay.jpg",
+    "choices": {
+      "avoid_drinking": {
+        "description": "Refuse the tainted water and search for a clean source.",
+        "health": -5,
+        "energy": -15,
+        "score": 20
+      },
+      "sip_carefully": {
+        "description": "Drink only from the clearest edge and hope for the best.",
+        "health": -15,
+        "energy": 5,
+        "score": 10
+      },
+      "report": {
+        "description": "Leave scent and sound warnings so others know to stay away.",
+        "health": 0,
+        "energy": -5,
+        "score": 15
+      }
+    }
+  },
+  "winter_scarcity": {
+    "name": "Winter Scarcity",
+    "description": "Deep winter has locked away food beneath snow and frost, and hunger gnaws at you.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/CargoNet_Di_12_Euro_4000_L%C3%B8nsdal_-_Bolna.jpg/500px-CargoNet_Di_12_Euro_4000_L%C3%B8nsdal_-_Bolna.jpg",
+    "choices": {
+      "dig": {
+        "description": "Dig through the snow to reach hidden food below.",
+        "health": -5,
+        "energy": -15,
+        "score": 15
+      },
+      "relocate": {
+        "description": "Travel to lower ground where winter is milder.",
+        "health": -10,
+        "energy": -20,
+        "score": 20
+      },
+      "fast": {
+        "description": "Ride out the scarcity by slowing your body down and waiting.",
+        "health": -10,
+        "energy": 10,
+        "score": 10
+      }
+    }
+  },
+  "seasonal_migration": {
+    "name": "Seasonal Migration",
+    "description": "The season is turning, and the ancient pull to move to new grounds stirs in you.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/A_Sky_Full_of_Snow_Geese_%2816664971147%29.jpg/500px-A_Sky_Full_of_Snow_Geese_%2816664971147%29.jpg",
+    "choices": {
+      "migrate": {
+        "description": "Join the great movement and travel with others heading the same way.",
+        "health": -10,
+        "energy": -20,
+        "score": 25
+      },
+      "stay": {
+        "description": "Remain in familiar territory and tough out the changing season.",
+        "health": -10,
+        "energy": -5,
+        "score": 10
+      },
+      "go_solo": {
+        "description": "Set out alone on your own route and your own schedule.",
+        "health": -5,
+        "energy": -15,
+        "score": 15
+      }
+    }
+  },
+  "shelter_search": {
+    "name": "Shelter Search",
+    "description": "Night is coming and your old shelter is gone. You need a new refuge before dark.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Rockhouse_Cliffs_Rockshelter.jpg/500px-Rockhouse_Cliffs_Rockshelter.jpg",
+    "choices": {
+      "search_high": {
+        "description": "Scout the ridges and trees for a protected nook.",
+        "health": -5,
+        "energy": -15,
+        "score": 15
+      },
+      "search_low": {
+        "description": "Investigate burrows, hollows, and gaps beneath roots.",
+        "health": 0,
+        "energy": -10,
+        "score": 20
+      },
+      "improvise": {
+        "description": "Build a quick shelter from branches, grass, or stones.",
+        "health": -5,
+        "energy": -20,
+        "score": 10
+      }
+    }
+  },
+  "unknown_creature": {
+    "name": "Unknown Creature",
+    "description": "An animal you have never seen before emerges nearby - neither predator nor prey, simply strange.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/7/75/Florida_freshwater_swamp_usgov_image.jpg",
+    "choices": {
+      "approach": {
+        "description": "Edge closer to satisfy your curiosity about the newcomer.",
+        "health": -10,
+        "energy": -10,
+        "score": 20
+      },
+      "observe": {
+        "description": "Keep a safe distance and study its behavior.",
+        "health": 0,
+        "energy": -5,
+        "score": 15
+      },
+      "avoid": {
+        "description": "Give it a wide berth and carry on your way.",
+        "health": 0,
+        "energy": -5,
+        "score": 10
+      }
+    }
+  },
+  "mysterious_sound": {
+    "name": "Mysterious Sound",
+    "description": "A rhythmic, unknown sound echoes from deeper in the wilderness - not quite danger, not quite friend.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Woodland%2C_Bogside_-_geograph.org.uk_-_2215308.jpg/500px-Woodland%2C_Bogside_-_geograph.org.uk_-_2215308.jpg",
+    "choices": {
+      "investigate": {
+        "description": "Follow the sound carefully to find its source.",
+        "health": -5,
+        "energy": -10,
+        "score": 20
+      },
+      "answer": {
+        "description": "Call back with a sound of your own and see what responds.",
+        "health": 0,
+        "energy": -5,
+        "score": 15
+      },
+      "ignore": {
+        "description": "Steer clear of the noise and whatever makes it.",
+        "health": 0,
+        "energy": -5,
+        "score": 10
+      }
+    }
+  },
+  "strange_tracks": {
+    "name": "Strange Tracks",
+    "description": "A line of unusual tracks cuts across your path - bigger than anything you know.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Buzz_Aldrin%27s_bootprint_on_the_Moon%2C_AS11-40-5877.jpg/500px-Buzz_Aldrin%27s_bootprint_on_the_Moon%2C_AS11-40-5877.jpg",
+    "choices": {
+      "follow": {
+        "description": "Track them carefully to learn what left them.",
+        "health": -5,
+        "energy": -15,
+        "score": 20
+      },
+      "memorize": {
+        "description": "Study the pattern closely and commit it to memory.",
+        "health": 0,
+        "energy": -5,
+        "score": 15
+      },
+      "back_away": {
+        "description": "Head in the opposite direction from the tracks.",
+        "health": 0,
+        "energy": -5,
+        "score": 10
+      }
+    }
+  },
+  "hidden_cache": {
+    "name": "Hidden Cache",
+    "description": "Your nose leads you to another animal's secret store of food, rich and unguarded.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Quercus_robur_acorn_-_Keila.jpg/500px-Quercus_robur_acorn_-_Keila.jpg",
+    "choices": {
+      "take_some": {
+        "description": "Eat your fill but leave most of the cache intact.",
+        "health": 10,
+        "energy": -5,
+        "score": 15
+      },
+      "take_all": {
+        "description": "Empty the cache completely - a windfall now, a risk later.",
+        "health": 15,
+        "energy": -5,
+        "score": 20
+      },
+      "leave_it": {
+        "description": "Leave it alone - stealing from neighbors invites trouble.",
+        "health": -5,
+        "energy": 0,
+        "score": 10
+      }
+    }
+  },
+  "pest_infestation": {
+    "name": "Pest Infestation",
+    "description": "Tiny biting pests have infested your resting place, and the itching is maddening.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Ixodus_ricinus_5x.jpg/500px-Ixodus_ricinus_5x.jpg",
+    "choices": {
+      "groom": {
+        "description": "Spend an hour carefully removing the pests one by one.",
+        "health": 5,
+        "energy": -10,
+        "score": 15
+      },
+      "relocate": {
+        "description": "Abandon the infested spot and find cleaner ground.",
+        "health": 0,
+        "energy": -15,
+        "score": 20
+      },
+      "endure": {
+        "description": "Tolerate the irritation and stay where you are.",
+        "health": -10,
+        "energy": 0,
+        "score": 10
+      }
+    }
+  },
+  "risky_feast": {
+    "name": "Risky Feast",
+    "description": "A treasure of food lies in the open - but something about the scene feels like a trap.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Runny_hunny.jpg/500px-Runny_hunny.jpg",
+    "choices": {
+      "feast_fast": {
+        "description": "Eat as much as you can, as quickly as you can, and bolt.",
+        "health": 10,
+        "energy": -10,
+        "score": 20
+      },
+      "circle": {
+        "description": "Circle the prize patiently, watching for whatever guards it.",
+        "health": 0,
+        "energy": -10,
+        "score": 15
+      },
+      "resist": {
+        "description": "Walk away - no meal is worth an unknown danger.",
+        "health": -5,
+        "energy": 0,
+        "score": 10
+      }
+    }
+  },
+  "injured_stranger": {
+    "name": "Injured Stranger",
+    "description": "You find another animal - not of your kind - hurt and helpless on the trail.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Feeding_a_baby_squirrel.jpg/500px-Feeding_a_baby_squirrel.jpg",
+    "choices": {
+      "help": {
+        "description": "Stay close, offer comfort or aid in whatever way you can.",
+        "health": -5,
+        "energy": -10,
+        "score": 25
+      },
+      "ignore": {
+        "description": "Pass by - nature takes its course.",
+        "health": 0,
+        "energy": 0,
+        "score": 5
+      },
+      "alert_others": {
+        "description": "Call out to attract others who might help.",
+        "health": 0,
+        "energy": -5,
+        "score": 15
+      }
+    }
+  },
+  "courtship_season": {
+    "name": "Courtship Season",
+    "description": "The season of courtship arrives, and rivals are showing off all around you.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Centrocercus_urophasianus_-USA_-male-8.jpg/500px-Centrocercus_urophasianus_-USA_-male-8.jpg",
+    "choices": {
+      "perform": {
+        "description": "Put on your finest display and compete for attention.",
+        "health": -5,
+        "energy": -15,
+        "score": 20
+      },
+      "observe": {
+        "description": "Watch the competition first and learn what works.",
+        "health": 0,
+        "energy": -5,
+        "score": 15
+      },
+      "withdraw": {
+        "description": "Skip the contest this season and build strength instead.",
+        "health": 0,
+        "energy": 10,
+        "score": 10
+      }
+    }
+  },
+  "home_building": {
+    "name": "Home Building",
+    "description": "It is time to build or repair a home for the season ahead.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Acrocephalus_arundinaceus_nest_%28cropped%29.jpg/500px-Acrocephalus_arundinaceus_nest_%28cropped%29.jpg",
+    "choices": {
+      "gather_best": {
+        "description": "Search far and wide for the finest materials.",
+        "health": -5,
+        "energy": -15,
+        "score": 20
+      },
+      "use_local": {
+        "description": "Work with whatever is close at hand.",
+        "health": 0,
+        "energy": -10,
+        "score": 15
+      },
+      "take_over": {
+        "description": "Find an abandoned structure and claim it as your own.",
+        "health": 5,
+        "energy": -5,
+        "score": 10
+      }
+    }
+  },
+  "protect_young": {
+    "name": "Protect the Young",
+    "description": "Something dangerous is near, and young ones depend on you for protection.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/CygneVaires.jpg/500px-CygneVaires.jpg",
+    "choices": {
+      "defend": {
+        "description": "Place yourself between the danger and the young, and hold.",
+        "health": -20,
+        "energy": -15,
+        "score": 25
+      },
+      "evacuate": {
+        "description": "Move the young to a hidden place before danger arrives.",
+        "health": -5,
+        "energy": -20,
+        "score": 20
+      },
+      "distract": {
+        "description": "Draw the threat away with a bold diversion.",
+        "health": -15,
+        "energy": -10,
+        "score": 15
+      }
+    }
+  },
+  "teach_survival": {
+    "name": "Teach Survival",
+    "description": "The young ones must learn to find food and avoid danger - and you are their teacher.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Killerwhales_jumping.jpg/500px-Killerwhales_jumping.jpg",
+    "choices": {
+      "demonstrate": {
+        "description": "Show them by doing, letting them copy your every move.",
+        "health": -5,
+        "energy": -15,
+        "score": 20
+      },
+      "let_them_try": {
+        "description": "Step back and let them practice while you keep watch.",
+        "health": 0,
+        "energy": -10,
+        "score": 15
+      },
+      "play": {
+        "description": "Turn the lesson into a game - play is how skills grow.",
+        "health": 0,
+        "energy": -5,
+        "score": 10
+      }
+    }
+  },
+  "cave_shelter": {
+    "name": "Cave Shelter",
+    "description": "A dark opening in the rock promises shelter - and the complete unknown.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Lechuguilla_Cave_Pearlsian_Gulf.jpg/500px-Lechuguilla_Cave_Pearlsian_Gulf.jpg",
+    "choices": {
+      "enter": {
+        "description": "Venture into the darkness to claim the shelter.",
+        "health": 5,
+        "energy": -10,
+        "score": 20
+      },
+      "listen": {
+        "description": "Wait at the mouth and listen for signs of occupancy.",
+        "health": 0,
+        "energy": -5,
+        "score": 15
+      },
+      "pass_by": {
+        "description": "The deep dark is not for you - find shelter elsewhere.",
+        "health": 0,
+        "energy": -5,
+        "score": 10
+      }
+    }
+  },
+  "cliff_path": {
+    "name": "Cliff Path",
+    "description": "The only way forward is a narrow ledge along a sheer cliff face.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/White_Cliffs_of_Dover_02.JPG/500px-White_Cliffs_of_Dover_02.JPG",
+    "choices": {
+      "edge_carefully": {
+        "description": "Place every step with total focus and cross slowly.",
+        "health": -5,
+        "energy": -15,
+        "score": 20
+      },
+      "find_detour": {
+        "description": "Search for a longer but safer way around.",
+        "health": 0,
+        "energy": -20,
+        "score": 15
+      },
+      "turn_back": {
+        "description": "Decide the risk is too great and retrace your steps.",
+        "health": 0,
+        "energy": -10,
+        "score": 5
+      }
+    }
+  },
+  "tangled_thicket": {
+    "name": "Tangled Thicket",
+    "description": "A dense tangle of thorny branches bars your way, clutching at every step.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/-2020-09-23_Blackberrys%2C_Coast_Path%2C_Trimingham.JPG/500px--2020-09-23_Blackberrys%2C_Coast_Path%2C_Trimingham.JPG",
+    "choices": {
+      "push_through": {
+        "description": "Force a path through the thorns.",
+        "health": -10,
+        "energy": -15,
+        "score": 20
+      },
+      "tunnel": {
+        "description": "Search the thicket's base for gaps small enough to slip through.",
+        "health": 0,
+        "energy": -10,
+        "score": 15
+      },
+      "go_around": {
+        "description": "Circle the whole thicket, however long it takes.",
+        "health": 0,
+        "energy": -15,
+        "score": 10
+      }
+    }
+  },
+  "frozen_water": {
+    "name": "Frozen Water",
+    "description": "The lake you know well has frozen over - solid-looking, but the ice may betray you.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Ice_Block%2C_Canal_Park%2C_Duluth_%2832752478892%29.jpg/500px-Ice_Block%2C_Canal_Park%2C_Duluth_%2832752478892%29.jpg",
+    "choices": {
+      "cross_light": {
+        "description": "Distribute your weight and cross the ice slowly.",
+        "health": -10,
+        "energy": -15,
+        "score": 20
+      },
+      "test_edges": {
+        "description": "Test the ice at the shore before committing to a crossing.",
+        "health": 0,
+        "energy": -10,
+        "score": 15
+      },
+      "walk_around": {
+        "description": "Follow the shoreline instead of trusting the ice.",
+        "health": 0,
+        "energy": -15,
+        "score": 10
+      }
+    }
+  },
+  "waterfall_discovery": {
+    "name": "Waterfall Discovery",
+    "description": "The roar of falling water grows ahead - a huge waterfall you have never seen before.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Cascada_Dynjandi%2C_Vestfir%C3%B0ir%2C_Islandia%2C_2014-08-14%2C_DD_136-138_HDR.JPG/500px-Cascada_Dynjandi%2C_Vestfir%C3%B0ir%2C_Islandia%2C_2014-08-14%2C_DD_136-138_HDR.JPG",
+    "choices": {
+      "explore": {
+        "description": "Scout around the falls for new paths and possibilities.",
+        "health": 0,
+        "energy": -15,
+        "score": 20
+      },
+      "drink": {
+        "description": "Enjoy the freshest water you have ever tasted.",
+        "health": 10,
+        "energy": -5,
+        "score": 15
+      },
+      "rest": {
+        "description": "Rest in the cool mist and take in the wonder.",
+        "health": 5,
+        "energy": 10,
+        "score": 10
+      }
+    }
+  },
+  "strange_scent": {
+    "name": "Strange Scent",
+    "description": "A scent you have never encountered drifts on the breeze - sweet, sharp, and utterly foreign.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Single_lavender_flower02.jpg/500px-Single_lavender_flower02.jpg",
+    "choices": {
+      "follow": {
+        "description": "Follow the scent trail to its source.",
+        "health": -5,
+        "energy": -15,
+        "score": 20
+      },
+      "memorize": {
+        "description": "Fix the scent in memory and continue on your way.",
+        "health": 0,
+        "energy": -5,
+        "score": 15
+      },
+      "mask": {
+        "description": "Roll in something strong to mask your own scent.",
+        "health": 0,
+        "energy": -10,
+        "score": 10
+      }
+    }
+  },
+  "abandoned_den": {
+    "name": "Abandoned Den",
+    "description": "You stumble on a cozy, well-built den - recently abandoned, by the smell of it.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Holey_Tree_%28772111164%29.jpg/500px-Holey_Tree_%28772111164%29.jpg",
+    "choices": {
+      "move_in": {
+        "description": "Claim the den as your own before anyone else does.",
+        "health": 5,
+        "energy": -5,
+        "score": 20
+      },
+      "inspect": {
+        "description": "Examine it carefully for clues about why it was abandoned.",
+        "health": 0,
+        "energy": -10,
+        "score": 15
+      },
+      "avoid": {
+        "description": "Whatever drove the last owner out may still be around - pass by.",
+        "health": 0,
+        "energy": -5,
+        "score": 10
+      }
+    }
+  },
+  "distant_lights": {
+    "name": "Distant Lights",
+    "description": "Strange glowing lights flicker on the horizon at night - far away, but drawing nearer over the seasons.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Melbourne_%28AU%29%2C_Melbourne_City_Centre_--_2019_--_1530-4.jpg/500px-Melbourne_%28AU%29%2C_Melbourne_City_Centre_--_2019_--_1530-4.jpg",
+    "choices": {
+      "watch": {
+        "description": "Observe the lights from a safe distance night after night.",
+        "health": 0,
+        "energy": -5,
+        "score": 15
+      },
+      "investigate": {
+        "description": "Creep closer one night to see what makes the glow.",
+        "health": -10,
+        "energy": -15,
+        "score": 20
+      },
+      "avoid": {
+        "description": "Keep your nighttime routines far from the glow.",
+        "health": 0,
+        "energy": -5,
+        "score": 10
+      }
+    }
+  },
+  "loud_machinery": {
+    "name": "Loud Machinery",
+    "description": "Monstrous growling machines have appeared nearby, shaking the ground and splitting the air.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Felling_a_gumtree_c1884-1917_Powerhouse_Museum.jpg/500px-Felling_a_gumtree_c1884-1917_Powerhouse_Museum.jpg",
+    "choices": {
+      "flee": {
+        "description": "Run from the noise and the vibrations now.",
+        "health": -5,
+        "energy": -20,
+        "score": 15
+      },
+      "wait_out": {
+        "description": "Hide in the deepest cover and wait for the workday to end.",
+        "health": -10,
+        "energy": -5,
+        "score": 10
+      },
+      "relocate": {
+        "description": "Accept that this territory is lost and seek new ground.",
+        "health": -10,
+        "energy": -25,
+        "score": 20
+      }
+    }
+  },
+  "litter_entanglement": {
+    "name": "Litter Entanglement",
+    "description": "Discarded human debris litters your path, and one careless step leaves you tangled.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Beach_in_Sharm_el-Naga02.jpg/500px-Beach_in_Sharm_el-Naga02.jpg",
+    "choices": {
+      "struggle": {
+        "description": "Fight against the tangle with all your strength.",
+        "health": -10,
+        "energy": -20,
+        "score": 10
+      },
+      "stay_calm": {
+        "description": "Slow down, think, and work yourself free bit by bit.",
+        "health": -5,
+        "energy": -10,
+        "score": 20
+      },
+      "attract_help": {
+        "description": "Make noise and movement that might draw a helping creature.",
+        "health": -5,
+        "energy": -5,
+        "score": 15
+      }
+    }
+  },
+  "rare_sky_event": {
+    "name": "Rare Sky Event",
+    "description": "The night sky erupts in streaks of light as a meteor shower blazes overhead.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Meteor_shower_in_the_Chilean_Desert_%28annotated%29_%28potw2227b%29.jpg/500px-Meteor_shower_in_the_Chilean_Desert_%28annotated%29_%28potw2227b%29.jpg",
+    "choices": {
+      "watch": {
+        "description": "Sit still and take in the whole spectacle.",
+        "health": 0,
+        "energy": 5,
+        "score": 15
+      },
+      "hide": {
+        "description": "The strange lights feel ominous - tuck into cover.",
+        "health": 0,
+        "energy": -5,
+        "score": 10
+      },
+      "celebrate": {
+        "description": "Add your own voice to the sky's performance.",
+        "health": 0,
+        "energy": -10,
+        "score": 20
+      }
+    }
+  },
+  "new_water_source": {
+    "name": "New Water Source",
+    "description": "Melting snow upstream has carved a fresh stream across your territory - new water, new routes, new risks.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/%D0%A6%D0%B2%D1%80%D1%86%D0%BA%D0%B0_2_PPRP001.jpg/500px-%D0%A6%D0%B2%D1%80%D1%86%D0%BA%D0%B0_2_PPRP001.jpg",
+    "choices": {
+      "explore": {
+        "description": "Follow the new stream to see where it leads.",
+        "health": 0,
+        "energy": -15,
+        "score": 20
+      },
+      "drink": {
+        "description": "Test the fresh water carefully, then drink deeply.",
+        "health": 5,
+        "energy": -5,
+        "score": 15
+      },
+      "mark_territory": {
+        "description": "Claim the new water before rivals find it.",
+        "health": 0,
+        "energy": -10,
+        "score": 10
+      }
+    }
+  },
+  "overcrowding": {
+    "name": "Overcrowding",
+    "description": "Too many animals now share your range - every food source picked clean, every shelter taken.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Blue_Wildebeest%2C_Ngorongoro.jpg/500px-Blue_Wildebeest%2C_Ngorongoro.jpg",
+    "choices": {
+      "disperse": {
+        "description": "Set out alone for less crowded territory.",
+        "health": -10,
+        "energy": -20,
+        "score": 20
+      },
+      "compete": {
+        "description": "Fight for your share in the crowded core.",
+        "health": -15,
+        "energy": -15,
+        "score": 15
+      },
+      "shift_hours": {
+        "description": "Adjust your schedule to forage when others rest.",
+        "health": -5,
+        "energy": -10,
+        "score": 10
+      }
+    }
+  },
+  "sickness_outbreak": {
+    "name": "Sickness Outbreak",
+    "description": "A sickness is spreading through the animals nearby - some have grown weak, others strange.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Meadowlands_Lyndhurst.jpg/500px-Meadowlands_Lyndhurst.jpg",
+    "choices": {
+      "isolate": {
+        "description": "Keep to yourself until the sickness passes.",
+        "health": -5,
+        "energy": -5,
+        "score": 15
+      },
+      "leave_area": {
+        "description": "Flee the outbreak zone entirely.",
+        "health": -10,
+        "energy": -20,
+        "score": 20
+      },
+      "help_weak": {
+        "description": "Stay near the ailing and help where you can - at your own risk.",
+        "health": -15,
+        "energy": -15,
+        "score": 25
+      }
+    }
+  },
+  "smoke_horizon": {
+    "name": "Smoke on the Horizon",
+    "description": "A gray column rises far away, and the wind carries an acrid smell toward your home.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Ognisko_ubt_0126.jpeg/500px-Ognisko_ubt_0126.jpeg",
+    "choices": {
+      "monitor": {
+        "description": "Watch the smoke closely and note which way the wind turns it.",
+        "health": 0,
+        "energy": -5,
+        "score": 15
+      },
+      "pre_evacuate": {
+        "description": "Start moving valuables - food, young - toward safer ground early.",
+        "health": -5,
+        "energy": -15,
+        "score": 20
+      },
+      "ignore": {
+        "description": "It is far away and someone else's problem - for now.",
+        "health": -5,
+        "energy": 0,
+        "score": 5
+      }
+    }
+  },
+  "ground_tremor": {
+    "name": "Ground Tremor",
+    "description": "The earth shudders and rolls beneath you, toppling stones and sending every creature into a panic.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Quake_epicenters_1963-98.png/500px-Quake_epicenters_1963-98.png",
+    "choices": {
+      "find_open_ground": {
+        "description": "Get clear of trees and rocks that could fall.",
+        "health": -5,
+        "energy": -10,
+        "score": 20
+      },
+      "burrow_deep": {
+        "description": "Dive into the most stable shelter you know.",
+        "health": -10,
+        "energy": -5,
+        "score": 10
+      },
+      "stay_put": {
+        "description": "Freeze and let the shaking pass beneath your feet.",
+        "health": -15,
+        "energy": 0,
+        "score": 5
+      }
+    }
+  },
+  "rockslide_blockage": {
+    "name": "Rockslide Blockage",
+    "description": "A rockslide has buried the trail you always use, sealing the way between you and your range.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Landslide_in_Cusco%2C_Peru_-_2018.jpg/500px-Landslide_in_Cusco%2C_Peru_-_2018.jpg",
+    "choices": {
+      "climb_over": {
+        "description": "Pick your way across the unstable rubble.",
+        "health": -10,
+        "energy": -15,
+        "score": 20
+      },
+      "find_route": {
+        "description": "Scout for a new path around the slide.",
+        "health": 0,
+        "energy": -15,
+        "score": 15
+      },
+      "dig_through": {
+        "description": "Try to clear a small passage through the blockage.",
+        "health": -5,
+        "energy": -20,
+        "score": 10
+      }
+    }
+  },
+  "unexpected_alliance": {
+    "name": "Unexpected Alliance",
+    "description": "A creature of a different kind offers help - warning calls, shared watch duty, or leftovers.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Remora_remora.jpg/500px-Remora_remora.jpg",
+    "choices": {
+      "accept": {
+        "description": "Welcome the partnership and watch each other's backs.",
+        "health": 10,
+        "energy": -5,
+        "score": 25
+      },
+      "observe": {
+        "description": "Keep the offer at a distance and see if it proves true.",
+        "health": 0,
+        "energy": -5,
+        "score": 15
+      },
+      "decline": {
+        "description": "Trust only your own kind and go it alone.",
+        "health": 0,
+        "energy": -5,
+        "score": 10
+      }
+    }
+  },
+  "human_food_gift": {
+    "name": "Human Food Gift",
+    "description": "Humans have left food out deliberately - a regular feast in the same spot each day.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/The_picnic_area_across_from_the_Brooks_Camp_Visitor_Center_-_NPS_Photo-L_Law_%2851889755354%29.jpg/500px-The_picnic_area_across_from_the_Brooks_Camp_Visitor_Center_-_NPS_Photo-L_Law_%2851889755354%29.jpg",
+    "choices": {
+      "take_freely": {
+        "description": "Enjoy the easy meals while they last.",
+        "health": 10,
+        "energy": 5,
+        "score": 10
+      },
+      "stay_cautious": {
+        "description": "Take a little, watch a lot - gifts can become traps.",
+        "health": 5,
+        "energy": -5,
+        "score": 20
+      },
+      "avoid": {
+        "description": "Wild food only - dependence is dangerous.",
+        "health": -5,
+        "energy": -5,
+        "score": 15
+      }
+    }
+  },
+  "garden_raid": {
+    "name": "Garden Raid",
+    "description": "A human garden overflows with tender crops, guarded only by a flimsy fence.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Cabbage_and_cross_section_on_white.jpg/500px-Cabbage_and_cross_section_on_white.jpg",
+    "choices": {
+      "raid_boldly": {
+        "description": "Sneak in and feast on the best of the harvest.",
+        "health": 10,
+        "energy": -10,
+        "score": 20
+      },
+      "raid_edges": {
+        "description": "Nibble only around the margins and leave little trace.",
+        "health": 5,
+        "energy": -5,
+        "score": 15
+      },
+      "stay_wild": {
+        "description": "Keep to wild foraging - gardens bring humans and danger.",
+        "health": -5,
+        "energy": -5,
+        "score": 10
+      }
+    }
+  },
+  "drying_pond": {
+    "name": "Drying Pond",
+    "description": "Your pond shrinks daily under the hot sun, its edges cracking, its center crowded with desperate creatures.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Cornjum%2C_Martenastate_010.jpg/500px-Cornjum%2C_Martenastate_010.jpg",
+    "choices": {
+      "defend_water": {
+        "description": "Guard your spot at the shrinking edge.",
+        "health": -10,
+        "energy": -15,
+        "score": 15
+      },
+      "travel": {
+        "description": "Leave before the last drop and seek a new waterhole.",
+        "health": -10,
+        "energy": -20,
+        "score": 20
+      },
+      "burrow_wait": {
+        "description": "Dig in and wait out the dry season the way your kind does.",
+        "health": -5,
+        "energy": -10,
+        "score": 10
+      }
+    }
+  },
+  "shiny_object": {
+    "name": "Shiny Object",
+    "description": "Something small and glittering catches the light along your path - fascinating and completely out of place.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Amant.JPG/500px-Amant.JPG",
+    "choices": {
+      "inspect": {
+        "description": "Investigate the glittering curiosity from every angle.",
+        "health": 0,
+        "energy": -5,
+        "score": 15
+      },
+      "collect": {
+        "description": "Carry it with you as a treasure.",
+        "health": 0,
+        "energy": -10,
+        "score": 20
+      },
+      "ignore": {
+        "description": "Leave the strange thing alone and move on.",
+        "health": 0,
+        "energy": 0,
+        "score": 10
+      }
+    }
+  },
+  "echo_canyon": {
+    "name": "Echo Canyon",
+    "description": "Deep walls of stone rise around you, and every sound you make comes back strange and multiplied.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Aerial_view_of_canyons.jpg/500px-Aerial_view_of_canyons.jpg",
+    "choices": {
+      "play": {
+        "description": "Answer the echoes and fill the canyon with your voice.",
+        "health": 0,
+        "energy": -5,
+        "score": 15
+      },
+      "listen": {
+        "description": "Stay quiet and let the canyon's sounds teach you its shape.",
+        "health": 0,
+        "energy": -5,
+        "score": 20
+      },
+      "hurry_through": {
+        "description": "The place feels wrong - cross it quickly and quietly.",
+        "health": -5,
+        "energy": -10,
+        "score": 10
+      }
+    }
+  },
+  "moonless_night": {
+    "name": "Moonless Night",
+    "description": "Clouds swallow the moon and stars, leaving a night so dark you cannot see your own feet.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/ESO-VLT-Laser-phot-33a-07.jpg/500px-ESO-VLT-Laser-phot-33a-07.jpg",
+    "choices": {
+      "trust_senses": {
+        "description": "Move by memory, scent, and sound alone.",
+        "health": -5,
+        "energy": -10,
+        "score": 20
+      },
+      "shelter": {
+        "description": "Den up until the sky clears or dawn arrives.",
+        "health": 0,
+        "energy": 5,
+        "score": 15
+      },
+      "stay_put": {
+        "description": "Freeze in place until your eyes adjust.",
+        "health": 0,
+        "energy": 0,
+        "score": 10
+      }
+    }
+  },
+  "occupied_shelter": {
+    "name": "Occupied Shelter",
+    "description": "You return to your shelter to find another animal already curled up inside it.",
+    "scenario_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Chipmunk-burrow_%28exits%29.jpg/500px-Chipmunk-burrow_%28exits%29.jpg",
+    "choices": {
+      "evict": {
+        "description": "Reclaim your home and drive the intruder out.",
+        "health": -10,
+        "energy": -15,
+        "score": 20
+      },
+      "share": {
+        "description": "There is room enough - share the shelter for the night.",
+        "health": 5,
+        "energy": -5,
+        "score": 15
+      },
+      "relocate": {
+        "description": "Not worth the fight - find new quarters.",
+        "health": -5,
+        "energy": -10,
+        "score": 10
+      }
+    }
+  }
 }
