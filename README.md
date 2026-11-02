@@ -1,0 +1,1 @@
+This is a survival game where you choose an animal and then roleplay their life experience. Once complete you will get a player score and a song celebrating the life of your animal. 

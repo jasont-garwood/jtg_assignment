@@ -2,4 +2,5 @@
 .ipynb_checkpoints/
 venv/
 .DS_Store
-data/keys.json
+data/
+keys/
